@@ -1,0 +1,604 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<link rel="shortcut icon" type="png" href="../images/icon/fav.jpg">
+		<title>Computer Courses on LearnIt</title>
+		<link rel="stylesheet" type="text/css" href="subjects.css">
+		<script type="text/javascript" src="../script.js"></script>
+	</head>
+	<body>
+		
+	<!-- NAVIGATION -->
+		<header>
+			<div class="nav" id="nav">
+				<div id="learned-logo">
+				<a href="../index.html"><img src="../images/projects/logo.png" style="width: 80px;"></a></div>
+				<div class="switch-tab" id="switch-tab" onclick="switchTAB()"><img src="../images/icon/menu.png"></div>
+				<ul id="list-switch">
+					<li><a href="basis.html"><img src="../images/courses/bookImg.jpg" class="icon">Concepte Esențiale</a></li>
+					<li><a href="computer_courses.html"><img src="../images/courses/coursesImg.jpg" class="icon">Computer Courses</a></li>
+					<li><a href="#data"><img src="../images/courses/dataStructureImg.jpg" class="icon">Structuri de Date</a></li>
+
+					<li><a href="#algo"><img src="../images/courses/algorithmImg.jpg" class="icon">Algoritmi</a></li>
+					<li><a href="#projects"><img src="../images/courses/projectsImg.jpg" class="icon">Proiecte</a></li>
+				</ul>
+				<div class="search" id="search-switch">
+					<input type="search" placeholder="Search" class="srch"><button id="srchbtn"><img src="../images/icon/search.png"></button>
+				</div>
+			</div>
+		</header>
+		
+
+	<!-- MAIN Heading of Page -->
+		<div class="title">
+			<span>Computer Science Courses<br>on LearnIt</span>
+			<div class="shortdesc">
+				<p>Învață limbaje de programare și concepte pentru a te pregăti pentru o carieră în <br>dezvoltarea hardware sau software.</p>
+			</div>
+		</div>
+
+
+	<!-- Some KeyWords related to Topic -->
+		<div class="course">
+			<div class="cbox">
+			<div class="det"><a href="#java">Java</a></div>
+			<div class="det"><a href="https://developer.android.com/">Android Development</a></div>
+			<div class="det"><a href="https://docs.oracle.com/javafx/2/get_started/fxml_tutorial.htm">FXML</a></div>
+			<div class="det"><a href="#c++">C++</a></div>
+			<div class="det"><a href="https://www.geeksforgeeks.org/introduction-of-compiler-design/">Compiler Designing</a></div>
+			<div class="det"><a href="https://www.coursera.org/specializations/game-design-and-development">Game Development</a></div>
+			<div class="det"><a href="#algo">Algorithm</a></div>
+			</div>
+			<div class="cbox">
+			<div class="det"><a href="#python">Python</a></div>
+			<div class="det"><a href="https://www.coursera.org/learn/machine-learning">Machine Learning</a></div>
+			<div class="det"><a href="https://en.wikipedia.org/wiki/Artificial_intelligence">Artificial Intelligence</a></div>
+			<div class="det"><a href="https://en.wikipedia.org/wiki/Network">Networking</a></div>
+			<div class="det"><a href="https://www.kaspersky.co.in/resource-center/definitions/what-is-cyber-security">Cyber Security</a></div>
+			<div class="det"><a href="https://www.eccouncil.org/ethical-hacking/">Ethical Hacking</a></div>
+			<div class="det"><a href="#data">Data Structures</a></div>
+			</div>
+			<div class="cbox">
+			<div class="det"><a href="#html_css">HTML and CSS</a></div>
+			<div class="det"><a href="https://www.udacity.com/course/full-stack-web-developer-nanodegree--nd0044">Full Stack Web Development</a></div>
+			<div class="det"><a href="https://uxplanet.org/what-is-ui-vs-ux-design-and-the-difference-d9113f6612de?gi=6d9d13f4cc95">UI Designing</a></div>
+			<div class="det"><a href="https://www.adobe.com/in/products/xd.html">Adobe XD</a></div>
+			<div class="det"><a href="https://www.sciencedirect.com/topics/computer-science/hardware-design">Hardware Designing</a></div>
+			<div class="det"><a href="#javascript">JavaScript</a></div>
+			<div class="det"><a href="https://getbootstrap.com/">Bootstrap</a></div>
+			</div>
+		</div>
+
+
+	<!-- Courses Available -->
+		<div class="inbt">
+			Accelerate your career with Computer Science programs
+		</div>
+
+		<div class="ccard">
+		<center>
+			<div class="ccardbox">
+				<div class="dcard">
+					<div class="fpart"><img src="../images/courses/java.jpeg"></div>
+					<a href="#java"><div class="spart">2 Courses <img src="../images/icon/dropdown.png"></div></a>
+				</div>
+				<div class="dcard">
+					<div class="fpart"><img src="../images/courses/python.jpeg"></div>
+					<a href="#python"><div class="spart">5 Courses <img src="../images/icon/dropdown.png"></div></a>
+				</div>
+				<div class="dcard">
+					<div class="fpart"><img src="../images/courses/c-course.jpg"></div>
+					<a href="#c++"><div class="spart">3 Courses <img src="../images/icon/dropdown.png"></div></a>
+				</div>
+			</div>
+			<div class="ccardbox">
+				<div class="dcard">
+					<div class="fpart"><img src="../images/courses/web-course.jpg"></div>
+					<a href="#html_css"><div class="spart">6 Courses <img src="../images/icon/dropdown.png"></div></a>
+				</div>
+				<div class="dcard">
+					<div class="fpart"><img src="../images/courses/datastruct.png"></div>
+					<a href="#data"><div class="spart">2 Courses <img src="../images/icon/dropdown.png"></div></a>
+				</div>
+				<div class="dcard">
+					<div class="fpart"><img src="../images/courses/algo-course.jpg"></div>
+					<a href="#algo"><div class="spart">1 Courses <img src="../images/icon/dropdown.png"></div></a>
+				</div>
+			</div>
+		</center>
+		</div>
+
+
+	<!-- Videos on JAVA Lectures -->
+		<div class="title2" id="java">
+			<span>Start Programming with Java</span>
+			<div class="shortdesc2">
+				<p>Învață și greșește pentru a deveni un nou programator în Java.</p>
+			</div>
+		</div>
+		
+		<center>
+			<div class="ccardbox2">
+				<div class="dcard2"><span class="tag" >1/8</span>
+					<div class="fpart2">
+						<img src="../images/courses/java.jpeg">
+						<iframe src="https://www.youtube.com/embed/IsLyduxZ9sc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >2/8</span>
+					<div class="fpart2">
+						<img src="../images/courses/java.jpeg">
+						<iframe src="https://www.youtube.com/embed/U_vuESBFEpE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >3/8</span>
+					<div class="fpart2">
+						<img src="../images/courses/java.jpeg">
+						<iframe src="https://www.youtube.com/embed/7i8vbPA37y0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >4/8</span>
+					<div class="fpart2">
+						<img src="../images/courses/java.jpeg">
+						<iframe src="https://www.youtube.com/embed/FB47F-QIk3k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >5/8</span>
+					<div class="fpart2">
+						<img src="../images/courses/java.jpeg">
+						<iframe src="https://www.youtube.com/embed/8qyVcHJ1Et4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >6/8</span>
+					<div class="fpart2">
+						<img src="../images/courses/java.jpeg">
+						<iframe src="https://www.youtube.com/embed/N53Vf8HGd-0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >7/8</span>
+					<div class="fpart2">
+						<img src="../images/courses/java.jpeg">
+						<iframe src="https://www.youtube.com/embed/slz2Vc904Qg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >8/8</span>
+					<div class="fpart2">
+						<img src="../images/courses/java.jpeg">
+						<iframe src="https://www.youtube.com/embed/Q0NVRQP1Z5g" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</center>
+		<br><br>
+		<div class="click-me">
+			<a href="https://www.youtube.com/watch?v=IsLyduxZ9sc&list=PLX9Zi6XTqOKQ7TdRz0QynGIKuMV9Q2H8E" target="_blank">Apasă aici pentru a vizualiza întregul playlist.</a>
+		</div>
+
+	<!-- Videos on C++ Lectures -->
+
+		<div class="title2" id="c++">
+			<span>Start Programming with C++</span>
+			<div class="shortdesc2">
+				<p>Învață și greșește pentru a deveni un nou programator în C++</p>
+			</div>
+		</div>
+		<center>
+			<div class="ccardbox2">
+				<div class="dcard2"><span class="tag" >1/8</span>
+					<div class="fpart2"><img src="../images/courses/c-course.jpg">
+						<iframe src="https://www.youtube.com/embed/Iuo9PpGE04Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >2/8</span>
+					<div class="fpart2"><img src="../images/courses/c-course.jpg">
+						<iframe src="https://www.youtube.com/embed/52dHKRD7cdg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >3/8</span>
+					<div class="fpart2"><img src="../images/courses/c-course.jpg">
+						<iframe src="https://www.youtube.com/embed/Iuo9PpGE04Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >4/8</span>
+					<div class="fpart2"><img src="../images/courses/c-course.jpg">
+						<iframe src="https://www.youtube.com/embed/Iuo9PpGE04Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			
+				<div class="dcard2"><span class="tag" >5/8</span>
+					<div class="fpart2"><img src="../images/courses/c-course.jpg">
+						<iframe src="https://www.youtube.com/embed/Iuo9PpGE04Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >6/8</span>
+					<div class="fpart2"><img src="../images/courses/c-course.jpg">
+						<iframe src="https://www.youtube.com/embed/Iuo9PpGE04Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >7/8</span>
+					<div class="fpart2"><img src="../images/courses/c-course.jpg">
+						<iframe src="https://www.youtube.com/embed/Iuo9PpGE04Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >8/8</span>
+					<div class="fpart2"><img src="../images/courses/c-course.jpg">
+						<iframe src="https://www.youtube.com/embed/Iuo9PpGE04Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</center>
+	<br><br>
+		<div class="click-me">
+			<a href="https://www.youtube.com/watch?v=Iuo9PpGE04Y&feature=youtu.be" target="_blank">Apasă aici pentru a vizualiza întregul playlist.</a>
+		</div>
+
+	<!-- Videos on PYTHON Lectures -->
+
+		<div class="title2" id="python">
+			<span>Start Programming with Python</span>
+			<div class="shortdesc2">
+				<p>Învață și greșește pentru a deveni un nou programator în Python </p>
+			</div>
+		</div>
+		<center>
+			<div class="ccardbox2">
+				<div class="dcard2"><span class="tag" >1/8</span>
+					<div class="fpart2"><img src="../images/courses/python.jpeg">
+						<iframe src="https://www.youtube.com/embed/QXeEoD0pB3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >2/8</span>
+					<div class="fpart2"><img src="../images/courses/python.jpeg">
+						<iframe src="https://www.youtube.com/embed/QXeEoD0pB3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >3/8</span>
+					<div class="fpart2"><img src="../images/courses/python.jpeg">
+						<iframe src="https://www.youtube.com/embed/QXeEoD0pB3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >4/8</span>
+					<div class="fpart2"><img src="../images/courses/python.jpeg">
+						<iframe src="https://www.youtube.com/embed/QXeEoD0pB3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			
+				<div class="dcard2"><span class="tag" >5/8</span>
+					<div class="fpart2"><img src="../images/courses/python.jpeg">
+						<iframe src="https://www.youtube.com/embed/QXeEoD0pB3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >6/8</span>
+					<div class="fpart2"><img src="../images/courses/python.jpeg">
+						<iframe src="https://www.youtube.com/embed/QXeEoD0pB3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >7/8</span>
+					<div class="fpart2"><img src="../images/courses/python.jpeg">
+						<iframe src="https://www.youtube.com/embed/QXeEoD0pB3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >8/8</span>
+					<div class="fpart2"><img src="../images/courses/python.jpeg">
+						<iframe src="https://www.youtube.com/embed/QXeEoD0pB3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</center>
+
+	<br><br>
+		<div class="click-me">
+			<a href="https://youtu.be/QXeEoD0pB3E" target="_blank">Apasă aici pentru a vizualiza întregul playlist.</a>
+		</div>
+	<!-- Videos on DATA STRUCTURES Lectures -->
+
+		<div class="title2" id="data">
+			<span>Data Structures</span>
+			<div class="shortdesc2">
+				<p>Consolidază-ți cunoștințele despre structurile de date.</p>
+			</div>
+		</div>
+		<center>
+			<div class="ccardbox2">
+				<div class="dcard2"><span class="tag" >1/8</span>
+					<div class="fpart2"><img src="../images/courses/datastruct.png">
+						<iframe src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >2/8</span>
+					<div class="fpart2"><img src="../images/courses/datastruct.png">
+						<iframe src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >3/8</span>
+					<div class="fpart2"><img src="../images/courses/datastruct.png">
+						<iframe src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >4/8</span>
+					<div class="fpart2"><img src="../images/courses/datastruct.png">
+						<iframe src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			
+				<div class="dcard2"><span class="tag" >5/8</span>
+					<div class="fpart2"><img src="../images/courses/datastruct.png">
+						<iframe src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >6/8</span>
+					<div class="fpart2"><img src="../images/courses/datastruct.png">
+						<iframe src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >7/8</span>
+					<div class="fpart2"><img src="../images/courses/datastruct.png">
+						<iframe src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >8/8</span>
+					<div class="fpart2"><img src="../images/courses/datastruct.png">
+						<iframe src="https://www.youtube.com/embed/Db9ZYbJONHc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</center>
+	<br><br>
+		<div class="click-me">
+			<a href="https://www.youtube.com/watch?v=Db9ZYbJONHc" target="_blank"> Apasă aici pentru a vizualiza întregul playlist.</a>
+		</div>
+
+	<!-- Videos on ALGORITHM Lectures -->
+
+		<div class="title2" id="algo">
+			<span>Algorithm</span>
+			<div class="shortdesc2">
+				<p>Consolidază-ți cunoștințele despre algoritmi.</p>
+			</div>
+		</div>
+		<center>
+			<div class="ccardbox2">
+				<div class="dcard2"><span class="tag" >1/8</span>
+					<div class="fpart2"><img src="../images/courses/algo-course.jpg">
+						<iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >2/8</span>
+					<div class="fpart2"><img src="../images/courses/algo-course.jpg">
+						<iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >3/8</span>
+					<div class="fpart2"><img src="../images/courses/algo-course.jpg">
+						<iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >4/8</span>
+					<div class="fpart2"><img src="../images/courses/algo-course.jpg">
+						<iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			
+				<div class="dcard2"><span class="tag" >5/8</span>
+					<div class="fpart2"><img src="../images/courses/algo-course.jpg">
+						<iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >6/8</span>
+					<div class="fpart2"><img src="../images/courses/algo-course.jpg">
+						<iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >7/8</span>
+					<div class="fpart2"><img src="../images/courses/algo-course.jpg">
+						<iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >8/8</span>
+					<div class="fpart2"><img src="../images/courses/algo-course.jpg">
+						<iframe src="https://www.youtube.com/embed/0IAPZzGSbME" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</center>
+	<br><br>
+		<div class="click-me">
+			<a href="https://www.youtube.com/watch?v=0IAPZzGSbME" target="_blank">Apasă aici pentru a vizualiza întregul playlist.</a>
+		</div>
+
+	<!-- Videos on HTML and CSS Lectures -->
+
+		<div class="title2" id="html_css">
+			<span>Start Programming with HTML and CSS</span>
+			<div class="shortdesc2">
+				<p>Show your creativity and uniqueness</p>
+			</div>
+		</div>
+		<center>
+			<div class="ccardbox2">
+				<div class="dcard2"><span class="tag" >1/8</span>
+					<div class="fpart2"><img src="../images/courses/web-course.jpg">
+						<iframe src="https://www.youtube.com/embed/TKYsuU86-DQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >2/8</span>
+					<div class="fpart2"><img src="../images/courses/web-course.jpg">
+						<iframe src="https://www.youtube.com/embed/TKYsuU86-DQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >3/8</span>
+					<div class="fpart2"><img src="../images/courses/web-course.jpg">
+						<iframe src="https://www.youtube.com/embed/TKYsuU86-DQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >4/8</span>
+					<div class="fpart2"><img src="../images/courses/web-course.jpg">
+						<iframe src="https://www.youtube.com/embed/TKYsuU86-DQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			
+				<div class="dcard2"><span class="tag" >5/8</span>
+					<div class="fpart2"><img src="../images/courses/web-course.jpg">
+						<iframe src="https://www.youtube.com/embed/TKYsuU86-DQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >6/8</span>
+					<div class="fpart2"><img src="../images/courses/web-course.jpg">
+						<iframe src="https://www.youtube.com/embed/TKYsuU86-DQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >7/8</span>
+					<div class="fpart2"><img src="../images/courses/web-course.jpg">
+						<iframe src="https://www.youtube.com/embed/TKYsuU86-DQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >8/8</span>
+					<div class="fpart2"><img src="../images/courses/web-course.jpg">
+						<iframe src="https://www.youtube.com/embed/TKYsuU86-DQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</center>
+
+	<br><br>
+		<div class="click-me">
+			<a href="https://www.youtube.com/watch?v=TKYsuU86-DQ" target="_blank">Apasă aici pentru a vizualiza întregul playlist.</a>
+		</div>
+	<!-- Videos on JAVASCRIPT Lectures -->
+
+		<div class="title2" id="javascript">
+			<span>Start Programming with JavaScript</span>
+			<div class="shortdesc2">
+				<p>Folosește aceste proiecte pentru a construi altele excelente.</p>
+			</div>
+		</div>
+		<center>
+			<div class="ccardbox2">
+				<div class="dcard2"><span class="tag" >1/8</span>
+					<div class="fpart2"><img src="../images/courses/javascript-course.jpg">
+						<iframe src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >2/8</span>
+					<div class="fpart2"><img src="../images/courses/javascript-course.jpg">
+						<iframe src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >3/8</span>
+					<div class="fpart2"><img src="../images/courses/javascript-course.jpg">
+						<iframe src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >4/8</span>
+					<div class="fpart2"><img src="../images/courses/javascript-course.jpg">
+						<iframe src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			
+				<div class="dcard2"><span class="tag" >5/8</span>
+					<div class="fpart2"><img src="../images/courses/javascript-course.jpg">
+						<iframe src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >6/8</span>
+					<div class="fpart2"><img src="../images/courses/javascript-course.jpg">
+						<iframe src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >7/8</span>
+					<div class="fpart2"><img src="../images/courses/javascript-course.jpg">
+						<iframe src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="dcard2"><span class="tag" >8/8</span>
+					<div class="fpart2"><img src="../images/courses/javascript-course.jpg">
+						<iframe src="https://www.youtube.com/embed/uDwSnnhl1Ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+				</div>
+			</div>
+		</center>
+	<br><br>
+		<div class="click-me">
+			<a href="https://www.youtube.com/watch?v=uDwSnnhl1Ng" target="_blank">Apasă aici pentru a vizualiza întregul playlist.</a>
+		</div>
+
+	<!-- PROJECTS -->
+		<div class="title2" id="projects">
+			<span>Browse Projects</span>
+			<div class="shortdesc2">
+				<p>Aici poti gasi diferite proiecte folosind Andorid, C/C++, Web Deveopment, AI, JavaScript, HTML, CSS, etc</p>
+			</div>
+		</div>
+		<div class="project-panel">
+			<div class="project-card">
+				<img src="../images/projects/calendar.proj.webp">
+				<div class="info">
+					<h4>Calendar</h4><p>Simple Calendar built with Pure JavaScript (No Libraries)</p>
+					<div class="download"><a href="https://github.com/niinpatel/calendarHTML-Javascript" target="_blank">Download</a></div>	
+				</div>
+			</div>
+			<div class="project-card">
+				<img src="../images/projects/banking.proj.jpg">
+				<div class="info">
+					<h4>Net Banking</h4><p>A Fully Working Net Banking Project Developed in PHP, HTML, JavaScript, CSS</p>
+					<div class="download"><a href="https://github.com/digambar2002/NetBanking-System-in-PHP" target="_blank">Download</a></div>
+				</div>
+			</div>
+			<div class="project-card">
+				<img src="../images/projects/delivery_proj.jpg">
+				<div class="info">
+					<h4>Food Delivery</h4><p>A HTML + CSS + Javascript project based on food delivery app's.</p>
+					<div class="download"><a href="https://github.com/raferdev/driveneats" target="_blank">Download</a></div>
+				</div>
+			</div>
+			<div class="project-card">
+				<img src="../images/projects/crop_proj.jpg">
+				<div class="info">
+					<h4>Crop Image</h4><p>Android library project for cropping images</p>
+					<div class="download"><a href="https://github.com/jdamcd/android-crop" target="_blank">Download</a></div>
+				</div>
+			</div>
+			<div class="project-card">
+				<img src="../images/projects/phoneNumber_proj.webp">
+				<div class="info">
+					<h4>Phone Number Tracker</h4><p>Track a phone number in google map Using Python</p>
+					<div class="download"><a href="https://github.com/tech2etc/Track-phone-number-location-using-python" target="_blank">Download</a></div>
+				</div>
+			</div>
+			<div class="project-card">
+				<img src="../images/projects/smart_proj.jpg">
+				<div class="info">
+					<h4>Smart Home</h4><p>Smart Home project based on C language</p>
+					<div class="download"><a href="https://github.com/MohamedAliRashad/Smart-Home-with-FreeRTOS" target="_blank">Download</a></div>
+				</div>
+			</div>
+
+		</div>
+
+	<br><br><br><br><br>
+
+	<!-- FOOTER -->
+	<footer>
+		<div class="footer-container">
+			<div class="left-col">
+				<img src="../images/icon/logoJOS.jpg" style="width: 200px;">
+				<div class="logo"></div>
+				
+				<p class="rights-text">Created By Andrei Bianca</p>
+				
+				<p><img src="../images/icon/phone.png"> 0764099144<br><img src="../images/icon/mail.png">&nbsp; andreigeorgiana21@stud.ase.ro</p>
+			</div>
+			<div class="right-col">
+				<h1 style="color: #fff">Our Newsletter</h1>
+				<div class="border"></div><br>
+				<p>Enter Your Email to get our News and updates.</p>
+				<form class="newsletter-form">
+					<input class="txtb" type="email" placeholder="Enter Your Email">
+					<input class="btn" type="submit" value="Submit">
+				</form>
+			</div>
+		</div>
+	</footer>
+
+	</body>
+	</html>

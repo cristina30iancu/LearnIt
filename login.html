@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="shortcut icon" type="png" href="images/icon/fav.jpg">
+	<title>Logare</title>
+	<link rel="stylesheet" type="text/css" href="loginStyle.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- redirect to the Home Page after submitting the form -->
+  <script>
+  $(document).ready(function(){
+    $("form").submit(function(){
+      alert("Great Job !");
+    });
+  });
+  </script>
+</head>
+<body>
+		<div class="form-box">
+			<div class="button-box">
+				<div id="btn"></div>
+				<button type="button" class="toggle-btn" id="log" onclick="login()" style="color: #fff;">Log In</button>
+				<button type="button" class="toggle-btn" id="reg" onclick="register()">Register</button>
+			</div>
+			<div class="Information" style="text-align: center;">
+				<h4>Bine ai venit pe pagina noastra!</h4>
+			</div>
+			
+			
+			<!-- Login  -->
+			<form id="login" class="input-group" action="index.html">
+				<div class="inp">
+					<img src="images/icon/user.png"><input type="text" id="email" class="input-field" placeholder="Email" style="width: 88%; border:none;" required="required">
+				</div>
+				<div class="inp" style="position: relative;">
+					<img src="images/icon/password.png" style="vertical-align: middle; margin-right: 5px;">
+					<input type="password" id="password" class="input-field" placeholder="Parola" style="width: 80%; border: none; padding-left: 10px;" required="required">
+					<button id="togglePassword" style="background: none; border: none; cursor: pointer; position: absolute; right: 0; top: 0; font-size: 1.5rem;">
+						<img src="images/icon/eyes.png" style="height: 24px; width: 24px;">
+					</button>
+				</div>
+				
+				<input type="checkbox" class="check-box">Salveaza parola
+				<button type="submit" class="submit-btn">Logheaza-te</button>
+			</form>
+
+
+			<div class="other" id="other">
+				<div class="instead">
+					<h3>or</h3>
+				</div>
+				<button class="connect" onclick="google()">
+					<img src="images/icon/google.png"><span>Conecteaza-te cu Google</span>
+				</button>
+			</div>
+			
+			<!-- Registration  -->
+			<form id="register" class="input-group">
+				<input type="text" class="input-field" placeholder="Nume Intreg" required="required">
+				<input type="email" class="input-field" placeholder="Adresa Email" required="required">
+				<input type="password" class="input-field" placeholder="Creaza Parola" name="psame" required="required">
+				<input type="password" class="input-field" placeholder="Confirma Parola" name="psame" required="required">
+				<input type="checkbox" class="check-box" id="chkAgree" onclick="goFurther()">Sunt de acord cu termenii si conditiile 
+				<button type="submit" id="btnSubmit" class="submit-btn reg-btn">Inregistreza-te</button>
+			</form>
+		</div>
+		<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

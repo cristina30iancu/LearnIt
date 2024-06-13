@@ -1,0 +1,193 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<link rel="shortcut icon" type="png" href="images/icon/fav.jpg">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Comaptible" content="IE=edge">
+		<title>LearnIt</title>
+		<meta name="desciption" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="script.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+		<script>
+			$(window).on('scroll', function(){
+				if($(window).scrollTop()){
+				$('nav').addClass('black');
+				}else {
+			$('nav').removeClass('black');
+			}
+			})
+		</script>
+	</head>
+	<body>
+	<!-- Navigation Bar -->
+		<header id="header">
+			<nav>
+				<div class="logo"><img src="images/projects/logo.png" alt="logo" style="width: 80px;"></div>
+				<ul>
+					<li><a class="active" href="">Acasa</a></li>
+					<li><a href="#services_section">Servicii</a></li>
+					<li><a href="subjects/teste.html">Grile</a></li>
+					<li><a href="#team_section">Echipa</a></li>
+					<li><a href="#feedBACK">Feedback</a></li>
+					
+				</ul>
+				<div class="srch"><input type="text" class="search" placeholder="Search here..."><img src="images/icon/search.png" alt="search" onclick=slide()></div>
+				<a class="get-started" href="login.html"> Contul Meu</a>
+				<img src="images/icon/menu.png" class="menu" onclick="sideMenu(0)" alt="menu">
+			</nav>
+			<div class="head-container">
+				<div class="quote">
+					<p>Studiul este abilitatea prin care iți schimbi viața, o îmbogățesti continuu și armonios, călăuzindu-te spre evoluție.</p>
+					<h5>Educația este procesul prin care facilitam învățarea sau dobândirea de cunoștințe, abilități,
+						valori și obiceiuri. Metodele educaționale clasice includ predarea, instruirea, povestirea, 
+						discuția și cercetarea. Învățarea online reprezintă o modalitate modernă și 
+						flexibilă de a accesa resurse educaționale și de a participa la cursuri și activități de 
+						învățare folosind internetul și tehnologia digitală.</h5>
+					
+				</div>
+				<div class="svg-image">
+					<img src="images/extra/knowledge.jpg" alt="svg">
+				</div>
+			</div>
+			<div class="side-menu" id="side-menu">
+				<div class="close" onclick="sideMenu(1)"><img src="images/icon/close.png" alt=""></div>
+				<div class="user">
+					<img src="images/creator/POZA.jpg" alt="Username">
+					<p>Andrei Bianca</p>
+				</div>
+				<ul>
+					<li><a href="#about_section">Despre</a></li>
+				
+					<li><a href="#team_section">Echipa</a></li>
+					<li><a href="#services_section">Servicii</a></li>
+				
+					<li><a href="#feedBACK">Feedback</a></li>
+				</ul>
+			</div>
+		</header>
+
+
+	<!-- Some Popular Subjects -->
+		<div class="title" >
+			
+			<span> Cateva subiecte pe care le vom aborda in aceasta aplicație</span>
+		</div>
+		<br><br>
+		<div class="course">
+			<center><div class="cbox">
+			<div class="det"><a href="subjects/quiz.html"><img src="images/courses/quizIndex.jpg">Quiz</a></div>
+			<div class="det"><a href="subjects/computer_courses.html"><img src="images/courses/coursesImg.jpg">Computer Courses</a></div>
+			<div class="det"><a href="subjects/basis.html"><img src="images/courses/bookImg.jpg">Concepte Esentiale</a></div>
+			</div></center>
+			<div class="cbox">
+			
+			<div class="det"><a href="subjects/computer_courses.html#data"><img src="images/courses/dataStructureImg.jpg">Structuri de Date</a></div>
+			<div class="det"><a href="subjects/computer_courses.html#algo"><img src="images/courses/algorithmImg.jpg">Algoritmi</a></div>
+			<div class="det det-last"><a href="subjects/computer_courses.html#projects"><img src="images/courses/projectsImg.jpg">Proiecte</a></div>
+			</div>
+		</div>
+
+		
+	<!-- ABOUT -->
+		<div class="diffSection" id="about_section">
+			<center><p style="font-size: 50px; padding: 100px">Despre</p></center>
+			<div class="about-content">
+					<div class="side-image">
+						<img class="sideImage" src="images/extra/onlineEdu.png">
+					</div>
+					<div class="side-text">
+						<h2>Care este scopul acestei aplicatii?</h2>
+						<p>Fiind conștient(ă) că te apropii de examen și că poate ai emoții legate de cât de bine te-ai pregătit și dacă ai învățat suficient din materialele predate la cursuri și seminarii, aplicația LearnIt vine în ajutorul tău cu resurse pentru toate disciplinele care te preocupă. Am creat o aplicație în care vei găsi tot ceea ce ai nevoie pentru a reuși la examenele care îți dau bătăi de cap. Am adăugat în aplicație atât videoclipuri, cât și documentație utilă, pentru a te ajuta să-ți gestionezi timpul eficient și să te concentrezi pe ceea ce contează cu adevărat. În plus, vei avea acces și la quiz-uri cu feedback instant, care să-ți crească încrederea pe măsură ce progresezi în procesul de învățare.</p>
+					</div>
+			</div>
+		</div>
+
+
+<!-- SERVICES -->
+<div class="service-swipe">
+	<div class="diffSection" id="services_section">
+	<center><p style="font-size: 50px; padding: 100px; padding-bottom: 40px; color: #fff;">Servicii</p></center>
+	</div>
+	<a href="subjects/computer_courses.html"><div class="s-card"><img src="images/courses/onlineCompCo.jpeg"><p>Cursuri Online fara Plata</p></div></a>
+	<a href="subjects/basis.html"><div class="s-card"><img src="images/courses/tutorials.png"><p>Concepte Esentiale in Programare</p></div></a>
+	<a href="subjects/teste.html"><div class="s-card"><img src="images/courses/exam.jpeg"><p>Teste Grila Generate</p></div></a>
+	<a href="subjects/quiz.html"><div class="s-card"><img src="images/courses/brain.jpg"><p>Mici Teste pentru Imbunatatirea Cunostintelor</p></div></a>
+	
+</div>
+
+
+
+	<!-- TEAM -->
+		<div class="diffSection" id="team_section">
+			<center><p style="font-size: 50px; padding-top: 100px; padding-bottom: 60px;">The Creator</p></center>
+			<div class="totalcard">
+				<div class="card">
+					<center><img src="images/creator/POZA.jpg"></center>
+					<center><div class="card-title">Andrei Bianca</div>
+					<div id="detail">
+						<p>“Puteți învăța un student o lecție pentru o zi; dar dacă îl învățați să învețe stârnindu-i curiozitatea, va continua să învețe cât timp va trăi.“</p>
+						<div class="duty"></div>
+						<a href="https://www.linkedin.com/in/georgiana-bianca-andrei-bb4151263/" target="_blank"><button class="btn-roshan">Follow+</button></a>
+					</div>
+					</center>
+				</div>
+				
+			</div>
+		</div>
+
+
+	
+
+
+	<!-- FEEDBACK -->
+		<div class="title2" id="feedBACK">
+			<span>Feedback</span>
+			<div class="shortdesc2">
+				<p>Te rugam, da-ne un feedback!</p>
+			</div>
+		</div>
+
+		<div class="feedbox">
+			<div class="feed">
+				<form action="mailto:andreigeorgiana21@stud.ase.ro" method="post" enctype="text/plain">
+					<label>Numele tau</label><br>
+					<input type="text" name="" class="fname" required="required"><br>
+					<label>Email</label><br>
+					<input type="email" name="mail" required="required"><br>
+					<label>Detalii</label><br>
+					<textarea name="addtional"></textarea><br>
+					<button type="submit" id="csubmit">Trimite mesajul</button>
+				</form>
+			</div>
+		</div>
+
+	<!-- Sliding Info -->
+		<marquee style="background: linear-gradient(to right, #0f4e4f, #456875); margin-top: 50px;" direction="left" onmouseover="this.stop()" onmouseout="this.start()" scrollamount="20"><div class="marqu">Educația este biletul către viitorul care îi așteaptă pe cei ce se pregătesc de pe acum. Atitudinea ta, mai mult decat capabilitatea, va decide cât de sus vei ajunge. Inteligenta se traduce prin abilitatea de a se adapta la schimbare, iar munca ta de azi, va fi castigul tau de maine.</div></marquee>
+
+	<!-- FOOTER -->
+		<footer>
+			<div class="footer-container">
+				<div class="left-col">
+					<img src="images/icon/logoJOS.jpg" style="width: 200px;">
+					<div class="logo"></div>
+					
+					<p class="rights-text">Created By Andrei Bianca</p>
+					
+					<p><img src="images/icon/phone.png"> 0764099144<br><img src="images/icon/mail.png">&nbsp; andreigeorgiana21@stud.ase.ro</p>
+				</div>
+				<div class="right-col">
+					<h1 style="color: #fff">Buletinul nostru</h1>
+					<div class="border"></div><br>
+					<p>Introdu email-ul tau ca sa poti fi anuntat de alte materiale noi disponibile</p>
+					<form class="newsletter-form">
+						<input class="txtb" type="email" placeholder="Email">
+						<input class="btn" type="submit" value="Submit">
+					</form>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+	</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" type="image/png" href="../images/icon/fav.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            background-image: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,0.5)),url("../images/extra/wall_quiz.jpeg");
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+        }
+        h1 {
+            color: #d96895; 
+            margin-bottom: 20px;
+            font-size: 50px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(60, 196, 214, 0.6), -2px -2px 4px rgba(253, 1, 131, 0.6);
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+    background-color: rgba(164, 232, 225, 0.5);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button:hover, button:focus {
+    background-color: rgba(133, 239, 229, 0.7); 
+    transform: translateY(-2px);
+}
+    </style>
+</head>
+<body>
+    <h1>Alegeți un quiz</h1>
+    <div class="button-container">
+        <button onclick="loadQuiz('662a49e20c692e552d393b66', 'Structuri de Date în Limbajul C')">Începe quiz-ul la Structuri de Date în Limbajul C</button>
+
+        <button onclick="loadQuiz('Programare C++')">Începe quiz-ul la C++</button>
+        <button onclick="loadQuiz('JAVA')">Începe quiz-ul la Java</button>
+        <button onclick="loadQuiz('JavaScript')">Începe quiz-ul la JavaScript</button>
+        <button onclick="loadQuiz('Baze de Date')">Începe quiz-ul la Baze de Date</button>
+        <button onclick="loadQuiz('Python')">Începe quiz-ul la Python</button>
+        <button onclick="loadQuiz('Istorie')">Începe quiz-ul la Istorie</button>
+        <button onclick="loadQuiz('id_document', 'Cunoștințe Esențiale')">Începe quiz-ul la Cunoștințe Esențiale</button>
+
+        <button onclick="navigateToCompletedTests()">Teste completate</button>
+    </div>
+    <script>
+function loadQuiz(id, subject) {
+    const url = `http://localhost:3000/api/quiz/${encodeURIComponent(id)}/${encodeURIComponent(subject)}`;
+    console.log("URL cerut:", url); // Verifică dacă URL-ul este corect formatat
+
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        if (data.questions) {
+            displayQuiz(data); // Asigură-te că această funcție poate afișa corect datele
+        } else {
+            console.log('Nu s-au găsit întrebări pentru acest subiect.');
+        }
+    })
+    .catch(error => console.error('Error loading the quiz:', error));
+}
+
+
+function displayQuiz(quiz) {
+    console.log("Quiz primit pentru afișare:", quiz);
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = ''; 
+
+    if (!quiz.questions) {
+        console.error('Nu există întrebări în obiectul quiz:', quiz);
+        container.innerHTML = 'Nu există întrebări disponibile.';
+        return;
+    }
+
+    const questions = quiz.questions;
+    questions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.innerHTML = `<h3>${index + 1}. ${q.question}</h3>` +
+            q.options.map((option, i) => `<label><input type="radio" name="question${index}" value="${option}"> ${option}</label>`).join('');
+        container.appendChild(questionDiv);
+    });
+}
+
+   
+   function checkAnswers(questions) {
+       // Aici adaugi logica pentru verificarea răspunsurilor
+       alert('Verificați console pentru răspunsuri');
+   }
+   
+       </script>
+    <!-- Container  afișare quiz-ului -->
+    <div id="quiz-container"></div>
+
+    
+</body>
+</html>
