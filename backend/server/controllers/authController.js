@@ -69,3 +69,39 @@ exports.getUserProfile = asyncHandler(async (req, res) => {
         throw new Error('Utilizatorul nu a fost găsit');
     }
 });
+
+exports.updateUser = asyncHandler(async (req, res) => {
+    const { fullName, email, password } = req.body;
+    const user = await User.findById(req.user._id);
+    
+    if (user) {
+      user.fullName = fullName || user.fullName;
+      user.email = email || user.email;
+      if (password) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(password, salt);
+      }
+      
+      const updatedUser = await user.save();
+      res.json({
+        _id: updatedUser._id,
+        fullName: updatedUser.fullName,
+        email: updatedUser.email,
+      });
+    } else {
+      res.status(404);
+      throw new Error('Utilizatorul nu a fost găsit');
+    }
+  });
+  
+  exports.deleteUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    
+    if (user) {
+      await user.remove();
+      res.json({ message: 'Utilizatorul a fost șters' });
+    } else {
+      res.status(404);
+      throw new Error('Utilizatorul nu a fost găsit');
+    }
+  });

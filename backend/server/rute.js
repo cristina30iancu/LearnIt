@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const quizController = require('./controllers/quizController');
+const { getQuizByIdAndSubject, getQuizBySubject, createQuiz, updateQuiz, deleteQuiz, saveQuizScore } = require('./controllers/quizController');
 
+router.get('/quiz/:id/:subject', getQuizByIdAndSubject);
+router.get('/quiz/:subject', getQuizBySubject);
+router.post('/quiz', createQuiz);
+router.put('/quiz/:id', updateQuiz);
+router.delete('/quiz/:id', deleteQuiz);
 
-router.get('/quiz/:id/:subject', quizController.getQuizByIdAndSubject);
-
-
-
-
+// Rute pentru scoruri
+router.post('/score', saveQuizScore);
 
 module.exports = router;
