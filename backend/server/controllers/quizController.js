@@ -3,22 +3,24 @@ const Score = require('../models/score');
 const asyncHandler = require('express-async-handler');
 
 exports.getQuizByIdAndSubject = async (req, res) => {
-    try {
-        const { id, subject } = req.params;
-        const quiz = await Quiz.findOne({
-            _id: id,
-            subject: { $regex: new RegExp(subject, 'i') }
-        });
+  try {
+      const { id, subject } = req.params;
+      const quiz = await Quiz.findOne({
+          _id: id,
+          subject: { $regex: new RegExp(subject, 'i') }
+      });
 
-        if (!quiz) {
-            return res.status(404).json({ message: "Quiz-ul nu a fost găsit." });
-        }
+      if (!quiz) {
+          return res.status(404).json({ message: "Quiz-ul nu a fost găsit." });
+      }
 
-        res.json(quiz);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+      res.json(quiz);
+  } catch (error) {
+      console.error("Error fetching quiz:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+  }
 };
+
 
 
 exports.getQuizBySubject = async (req, res) => {

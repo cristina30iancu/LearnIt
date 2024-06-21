@@ -31,35 +31,38 @@ body {
 	box-shadow: 0px 0px 100px rgba(0,0,0,0.4);
 }
 
-.button-box
-{
-	width: 220px;
+
+.button-box {
+	width: 220px;  /* Ajustează dacă este necesar pentru a se potrivi cu lățimea totală a ambelor butoane */
 	margin: 35px auto;
 	position: relative;
 	box-shadow: 0 0 20px 9px rgba(0,0,0,.1);
 	border-radius: 30px;
+	display: flex;  /* Folosește flexbox pentru a alinia butoanele */
+	justify-content: center;  /* Centrează butoanele în box */
+	align-items: center;  /* Aliniază butoanele vertical */
 }
 
-.toggle-btn
-{
-	padding: 10px 30px;
-	cursor: pointer;
-	background: transparent;
-	position: relative;
-	border: 0;
-	outline: none;
+.toggle-btn {
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative; /* Ajustează dacă este necesar */
+    z-index: 2; /* Așează butonul peste slider */
 }
 
-#btn
-{
-	top: 0;
-	left: 0;
-	position: absolute;
-	width: 110px;
-	height: 100%;
-	background: linear-gradient(to right, #59efe7, #DF2771);
-	border-radius: 30px;
-	transition: 0.5s;
+#btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right, #59efe7, #DF2771);
+    border-radius: 30px;
+    transition: 0.5s;
+    z-index: 1; /* Așează slider-ul sub butoane */
 }
 .social-icons
 {
