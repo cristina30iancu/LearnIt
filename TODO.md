@@ -6,3 +6,4 @@ De făcut:
 - pagina cont si teste rez - da
 - notite
 - feedback
+- generare test cu doar 20 intrebari
