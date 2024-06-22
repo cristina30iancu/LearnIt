@@ -7,13 +7,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <!-- redirect to the Home Page after submitting the form -->
-  <script>
-  $(document).ready(function(){
-    $("form").submit(function(){
-      alert("Great Job !");
-    });
-  });
-  </script>
+ 
 </head>
 <body>
 		<div class="form-box">
@@ -28,7 +22,7 @@
 			
 			
 			<!-- Login  -->
-			<form id="login" class="input-group" action="index.html">
+			<form id="login" class="input-group">
 				<div class="inp">
 					<img src="images/icon/user.png"><input type="text" id="email" class="input-field" placeholder="Email" style="width: 88%; border:none;" required="required">
 				</div>
@@ -41,7 +35,7 @@
 				</div>
 				
 				<input type="checkbox" class="check-box">Salveaza parola
-				<button type="submit" class="submit-btn">Logheaza-te</button>
+				<button type="button" id="login-btn" class="submit-btn">Logheaza-te</button>
 			</form>
 
 
@@ -56,14 +50,14 @@
 			
 			<!-- Registration  -->
 			<form id="register" class="input-group">
-				<input type="text" class="input-field" placeholder="Nume Intreg" required="required">
-				<input type="email" class="input-field" placeholder="Adresa Email" required="required">
-				<input type="password" class="input-field" placeholder="Creaza Parola" name="psame" required="required">
-				<input type="password" class="input-field" placeholder="Confirma Parola" name="psame" required="required">
+				<input type="text" id="name-sign" class="input-field" placeholder="Nume Intreg" required="required">
+				<input type="email" id="email-sign" class="input-field" placeholder="Adresa Email" required="required">
+				<input type="password" id="password-sign" class="input-field" placeholder="Creaza Parola" name="psame" required="required">
+				<input type="password" id="password-confirm-sign" class="input-field" placeholder="Confirma Parola" name="psame" required="required">
 				<input type="checkbox" class="check-box" id="chkAgree" onclick="goFurther()">Sunt de acord cu termenii si conditiile 
-				<button type="submit" id="btnSubmit" class="submit-btn reg-btn">Inregistreza-te</button>
+				<button type="button" id="btnSubmit" class="submit-btn reg-btn">Inregistreza-te</button>
 			</form>
 		</div>
-		<script type="text/javascript" src="script.js"></script>
+		<script type="text/javascript" src="login.js"></script>
 </body>
 </html>

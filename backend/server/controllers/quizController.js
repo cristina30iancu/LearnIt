@@ -21,7 +21,32 @@ exports.getQuizByIdAndSubject = async (req, res) => {
   }
 };
 
+exports.submitQuiz = asyncHandler(async (req, res) => {
+    const { quizId, answers } = req.body;
+    const userId = req.user._id;
 
+    const quiz = await Quiz.findById(quizId);
+    if (!quiz) {
+        return res.status(404).json({ msg: 'Quiz nu a fost găsit' });
+    }
+
+    let score = 0;
+
+    answers.forEach(answer => {
+        const question = quiz.questions[answer.questionIndex];
+        if (question && question.answer === answer.answer) {
+            score++;
+        }
+    });
+
+    const newScore = await Score.create({
+        userId,
+        quizId,
+        score
+    });
+
+    res.status(200).json({ score: newScore.score });
+});
 
 exports.getQuizBySubject = async (req, res) => {
   try {

@@ -1,7 +1,6 @@
 const express = require('express');
 const { protect } = require('../middleware/authMiddleware');
-const authController = require('../controllers/authController');
-const userController = require('../models/userModel');
+const authController = require('./controllers/authController');
 const router = express.Router();
 
 router.post('/register', authController.register);
@@ -11,9 +10,9 @@ router.get('/rutaProtejata', protect, (req, res) => {
     res.json({ data: 'Ai accesat o rută protejată.' });
   });
  
-router.get('/profile', protect, userController.getUserProfile);
+router.get('/profile', protect, authController.getUserProfile);
 
-router.post('/forgot-password', authController.forgotPassword);
+// router.post('/forgot-password', authController.forgotPassword);
 
 router.post('/logout', (req, res) => {
     res.json({ message: 'Deconectare reușită.' });

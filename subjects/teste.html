@@ -59,41 +59,47 @@
         <button onclick="loadQuiz('662a49e20c692e552d393b66', 'Structuri de Date în Limbajul C')">Începe quiz-ul la
             Structuri de Date în Limbajul C</button>
 
-            <button onclick="loadQuiz('662a4a640c692e552d393b68', 'Programare C++')">Începe quiz-ul la C++</button>
+        <button onclick="loadQuiz('662a4a640c692e552d393b68', 'Programare C++')">Începe quiz-ul la C++</button>
 
-            <button onclick="loadQuiz('662a4d3b0c692e552d393b6d', 'JAVA')">Începe quiz-ul la Java</button>
-            <button onclick="loadQuiz('662a51df0c692e552d393b75', 'JavaScript')">Începe quiz-ul la JavaScript</button>
-            <button onclick="loadQuiz('662a51df0c692e552d393b75', 'Baze de Date')">Începe quiz-ul la Baze de Date</button>
-            <button onclick="loadQuiz('662a4e7e0c692e552d393b71', 'Python')">Începe quiz-ul la Python</button>
-            <button onclick="loadQuiz('662a4fba0c692e552d393b73', 'Algoritmi')">Începe quiz-ul la Algoritmi</button>
-            <button onclick="loadQuiz('662a610f0c692e552d393b77', 'Cunoștințe Esențiale')">Începe quiz-ul la Cunoștințe Esențiale</button>
-            
+        <button onclick="loadQuiz('662a4d3b0c692e552d393b6d', 'JAVA')">Începe quiz-ul la Java</button>
+        <button onclick="loadQuiz('662a51df0c692e552d393b75', 'JavaScript')">Începe quiz-ul la JavaScript</button>
+        <button onclick="loadQuiz('662a51df0c692e552d393b75', 'Baze de Date')">Începe quiz-ul la Baze de Date</button>
+        <button onclick="loadQuiz('662a4e7e0c692e552d393b71', 'Python')">Începe quiz-ul la Python</button>
+        <button onclick="loadQuiz('662a4fba0c692e552d393b73', 'Algoritmi')">Începe quiz-ul la Algoritmi</button>
+        <button onclick="loadQuiz('662a610f0c692e552d393b77', 'Cunoștințe Esențiale')">Începe quiz-ul la Cunoștințe
+            Esențiale</button>
 
         <button onclick="navigateToCompletedTests()">Teste completate</button>
-        <div id="quiz-container"></div>
-
     </div>
+
+    <!-- Container afișare quiz-ului -->
+    <div id="quiz-container"></div>
+    <button id="submit-quiz-button" style="display: none;" onclick="submitQuiz()">Trimite test</button>
+
     <script>
-       function loadQuiz(id, subject) {
-    const url = `http://localhost:3000/api/quiz/${id}/${encodeURIComponent(subject)}`;
-    console.log("URL cerut:", url);
+        let currentQuizId = '';
 
-    fetch(url)
-        .then(response => {
-            if (!response.ok) throw new Error('Failed to load the quiz');
-            return response.json();
-        })
-        .then(data => {
-            if (data.questions && data.questions.length > 0) {
-                displayQuiz(data);
-            } else {
-                console.log('Nu s-au găsit întrebări pentru acest subiect.');
-            }
-        })
-        .catch(error => console.error('Error loading the quiz:', error));
-}
+        function loadQuiz(id, subject) {
+            currentQuizId = id;
+            const url = `http://localhost:3000/api/quiz/${id}/${encodeURIComponent(subject)}`;
+            console.log("URL cerut:", url);
 
-
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed to load the quiz');
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.questions && data.questions.length > 0) {
+                        displayQuiz(data);
+                        document.getElementById('submit-quiz-button').style.display = 'block';
+                    } else {
+                        console.log('Nu s-au găsit întrebări pentru acest subiect.');
+                        document.getElementById('submit-quiz-button').style.display = 'none';
+                    }
+                })
+                .catch(error => console.error('Error loading the quiz:', error));
+        }
 
         function displayQuiz(quiz) {
             console.log("Quiz primit pentru afișare:", quiz);
@@ -115,16 +121,42 @@
             });
         }
 
+        function submitQuiz() {
+            const container = document.getElementById('quiz-container');
+            const questions = container.querySelectorAll('div');
+            const answers = [];
+            questions.forEach((question, index) => {
+                const selectedOption = question.querySelector('input[type="radio"]:checked');
+                if (selectedOption) {
+                    answers.push({ questionIndex: index, answer: selectedOption.value });
+                }
+            });
 
-        function checkAnswers(questions) {
-            // Aici adaugi logica pentru verificarea răspunsurilor
-            alert('Verificați console pentru răspunsuri');
+            const payload = {
+                quizId: currentQuizId,
+                answers: answers
+            };
+
+            fetch('http://localhost:3000/api/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization':localStorage.getItem('userToken') // assuming you have a token for authentication
+                },
+                body: JSON.stringify(payload)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Scorul obținut:', data);
+                    alert(`Ai obținut un scor de ${data.score}`);
+                })
+                .catch(error => console.error('Error submitting the quiz:', error));
         }
 
+        function navigateToCompletedTests() {
+            // Logica pentru navigarea la testele completate
+        }
     </script>
-    <!-- Container  afișare quiz-ului -->
-    <div id="quiz-container"></div>
-
 
 </body>
 

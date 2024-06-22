@@ -54,5 +54,5 @@ exports.verifyToken = verifyToken;
 
 const quizRoutes = require('./rute');  
 app.use('/api', quizRoutes);
-// const authRoutes = require('./ruteAuth');  // Comentează sau decomentează în funcție de necesități
-// app.use('/auth', authRoutes);
+const authRoutes = require('./ruteAuth');  // Comentează sau decomentează în funcție de necesități
+app.use('/api', authRoutes);

@@ -1,5 +1,8 @@
 De făcut: 
-- afisare grila
-- ⁠trimitere raspuns grila cu cate ai raspuns (nota)
+- afisare grila - da
+- ⁠trimitere raspuns grila cu cate raspunsuri si nota
 - ⁠ceva la admin
-- gestionare autentificare
+- gestionare autentificare - da
+- pagina cont si teste rez
+- notite
+- feedback
