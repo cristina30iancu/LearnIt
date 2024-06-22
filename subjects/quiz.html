@@ -1,91 +1,800 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<link rel="shortcut icon" type="png" href="../images/icon/fav.jpg">
-	<title>Quiz on LearnIt</title>
-	<link rel="stylesheet" type="text/css" href="quizStyle.css">
-	<script type="text/javascript" src="../script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz on LearnIt</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            background: url('../images/extra/quiz_start3.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #FA4B37;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #DF2771; 
+        }
+
+        .nav {
+            width: 100%;
+            background-color: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 2%;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+            box-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+        }
+
+        .nav li, a, button {
+            float: left;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            color: #2E3D49;
+            display: block;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .nav ul li img {
+            width: 20px;
+            margin-right: 10px;
+            transform: translateY(5px);
+            padding-top: 5px;
+        }
+
+        .nav ul li {
+            list-style: none;
+            display: inline-block;
+            padding: 0px 20px;
+        }
+
+        .nav ul li a {
+            transition: all 0.3s ease 0s;
+        }
+
+        .nav ul li a:hover {
+            color: #8b125d;
+        }
+
+        .nav button {
+            padding: 9px 25px;
+            background: linear-gradient(to right, #ab5779, #135962);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease 0s;
+        }
+
+        #srchbtn {
+            padding: 9px 20px;
+        }
+
+        #srchbtn img {
+            width: 15px;
+            filter: brightness(100);
+        }
+
+        .nav button:hover {
+            opacity: .9;
+        }
+
+        .nav .search {
+            float: right;
+        }
+
+        .nav .search .srch {
+            font-size: 13px;
+            width: 300px;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid #448ca4;
+            padding: 9px;
+        }
+
+        .nav .search button {
+            margin-right: 5px;
+            float: right;
+            margin-left: 10px;
+        }
+
+        .nav .switch-tab {
+            cursor: pointer;
+            visibility: hidden;
+        }
+
+        .nav .switch-tab img {
+            width: 20px;
+        }
+
+        .nav .check-box {
+            cursor: pointer;
+            visibility: hidden;
+        }
+
+        .title {
+            margin-top: 18%;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title span {
+            font-weight: 700;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 60px;
+            color: #fff;
+        }
+
+        .title .shortdesc {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20px;
+            color: #efefef;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .title button {
+            padding: 20px 2%;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            background: #33949d;
+            outline: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px #abdbe2, 0 0 20px #e4b0c7;
+        }
+
+        .title button:hover {
+            box-shadow: 0 0 20px #abcfd4, 0 0 30px #fbb1d1;
+        }
+
+        .panel {
+            display: none;
+            width: 100%;
+            height: calc(100vh - 80px);
+            position: fixed;
+            top: 80px;
+            background: #FFF;
+            z-index: 5;
+            padding: 20px;
+        }
+
+        .left-side {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.7), 0 0 30px rgba(0,0,0,0.5);
+        }
+        #question-container {
+            margin-top: 20px; /* Ajustează valoarea în funcție de cât de jos dorești să fie textul */
+            font-size: 24px; /* Poți ajusta dimensiunea textului, dacă este necesar */
+            color: #2E3D49; /* Poți ajusta culoarea textului, dacă este necesar */
+        }
+
+        #quiz-container {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .quiz-frame {
+            width: 100%;
+            height: 95vh;
+            border: none;
+        }
+
+        .main-frame {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .main-frame p {
+            font-size: 5em;
+            font-weight: 900;
+            color: #2E3D49;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        .btn-container button {
+            padding: 10px;
+            margin: 5px 0;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f4f4f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-container button:hover {
+            background-color: #ddd;
+        }
+
+        .correct {
+            background-color: #4CAF50 !important;
+        }
+
+        .wrong {
+            background-color: #f44336 !important;
+        }
+
+        #timer {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #result-screen {
+            display: none;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Open Sans', sans-serif;
+            color: #2E3D49;
+        }
+
+        #result-screen h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        #result-screen p {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        #restart-button,
+        #main-button {
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4cafaa;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin: 10px; /* Add margin for better spacing */
+        }
+
+        #restart-button:hover,
+        #main-button:hover {
+            background-color: #45a09d;
+        }
+
+        @media screen and (max-width: 1366px) {
+            .search {
+                display: none;
+                margin-bottom: 10px;
+            }
+        }
+
+        @media screen and (max-width: 1000px) {
+            .nav ul, .nav .search {
+                display: none;
+            }
+            .nav #learned-logo {
+                transition: 1s ease;
+                margin-left: 40%;
+                transform: scale(1.5);
+            }
+            .nav ul li {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            .nav .switch-tab {
+                visibility: visible;
+            }
+            .nav .check-box {
+                visibility: visible;
+            }
+            .search {
+                visibility: visible;
+                margin: 30px;
+                margin-top: 0px;
+            }
+        }
+    </style>
 </head>
 <body>
-	
-<!-- NAVIGATION -->
-	<header>
-		<div class="nav" id="nav">
-			<div id="learned-logo">
-			<a href="../index.html"><img src="../images/projects/logo.png" style="width: 80px;"></a></div>
-			<div class="switch-tab" id="switch-tab" onclick="switchTAB()"><img src="../images/icon/menu.png"></div>
-			<ul id="list-switch">
-				
-				<li><a href="basis.html"><img src="../images/courses/bookImg.jpg" class="icon">Concepte Esențiale</a></li>
-				<li><a href="computer_courses.html"><img src="../images/courses/coursesImg.jpg" class="icon">Computer Courses</a></li>
-				<li><a href="computer_courses.html#data"><img src="../images/courses/dataStructureImg.jpg" class="icon">Structuri de Date</a></li>
-				<li><a href="computer_courses.html#algo"><img src="../images/courses/algorithmImg.jpg" class="icon">Algoritmi</a></li>
-				<li><a href="computer_courses.html#projects"><img src="../images/courses/projectsImg.jpg" class="icon">Proiecte</a></li>
-			</ul>
-			<div class="search" id="search-switch">
-				<input type="search" placeholder="Search" class="srch"><button id="srchbtn"><img src="../images/icon/search.png"></button>
-			</div>
-		</div>
-	</header>
-	
+    <div class="nav">
+        <div id="learned-logo">
+            <a href="../index.html"><img src="../images/projects/logo.png" style="width: 80px;"></a>
+        </div>
+        <div class="switch-tab" id="switch-tab" onclick="switchTAB()"><img src="../images/icon/menu.png"></div>
+        <ul id="list-switch">
+            <li><a href="basis.html"><img src="../images/courses/bookImg.jpg" class="icon">Concepte Esențiale</a></li>
+            <li><a href="computer_courses.html"><img src="../images/courses/coursesImg.jpg" class="icon">Computer Courses</a></li>
+            <li><a href="computer_courses.html#data"><img src="../images/courses/dataStructureImg.jpg" class="icon">Structuri de Date</a></li>
+            <li><a href="computer_courses.html#algo"><img src="../images/courses/algorithmImg.jpg" class="icon">Algoritmi</a></li>
+            <li><a href="computer_courses.html#projects"><img src="../images/courses/projectsImg.jpg" class="icon">Proiecte</a></li>
+        </ul>
+    </div>
 
-<!-- MAIN Heading of Page -->
-	<div class="title" id="title">
-		<span> Teste LearnIt</span>
-		<div class="shortdesc"><br>
-			<p>Mult succes!</p>
-		</div>
-		<button onclick="startquiz()">Incepe Acum</button>
-	</div>
+    <div class="title" id="start-screen">
+        <span>Test interactiv LearnIt</span>
+        <p class="shortdesc">Mult succes!</p>
+        <button id="start-button">Începe Acum</button>
+    </div>
+
+    <div class="panel" id="panel">
+        <div class="left-side">
+            <div id="quiz-container">
+                <div id="question-container"></div>
+                <div id="answer-buttons" class="btn-container"></div>
+                <div id="timer">Timp ramas: <span id="time-left"></span></div>
+            </div>
+            <div id="result-screen" class="hidden">
+                <h1>Test Completat!</h1>
+                <p>Rezultatul tau este de  <span id="score">  </span> intrebari corecte</p>
+                <button id="restart-button">Incepe alt test</button>
+                <button id="main-button">Pagina Principală</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startButton = document.getElementById('start-button');
+        const restartButton = document.getElementById('restart-button');
+        const mainButton = document.getElementById('main-button');
+        const startScreen = document.getElementById('start-screen');
+        const panel = document.getElementById('panel');
+        const quizContainer = document.getElementById('quiz-container');
+        const resultScreen = document.getElementById('result-screen');
+        const questionContainer = document.getElementById('question-container');
+        const answerButtons = document.getElementById('answer-buttons');
+        const timerElement = document.getElementById('time-left');
+        const scoreElement = document.getElementById('score');
+
+        let shuffledQuestions, currentQuestionIndex;
+        let score = 0;
+        let timeLeft;
+        let timerInterval;
+
+        const questions = [
+            {
+                question: "Ce tip de date se folosește pentru a crea o variabilă care să stocheze text?",
+                answers: [
+                    { text: "string", correct: true },
+                    { text: "Stringer", correct: false },
+                    { text: "Text", correct: false },
+                    { text: "word", correct: false }
+                ]
+            },
+            {
+                question: "În Python, cum introduci COMENTARII în codul tău?",
+                answers: [
+                    { text: "# comentariu", correct: true },
+                    { text: "// comentariu", correct: false },
+                    { text: "<--comentariu-->", correct: false },
+                    { text: "/* comentariu */", correct: false }
+                ]
+            },
+            {
+                question: "Care este cuvântul cheie utilizat pentru a defini o interfață în Java?",
+                answers: [
+                    { text: "abstract", correct: false },
+                    { text: "interface", correct: true },
+                    { text: "implements", correct: false },
+                    { text: "extends", correct: false }
+                ]
+            },
+            {
+                question: "Cum se numește procesul de ascundere a detaliilor implementării în programare?",
+                answers: [
+                    { text: "Polimorfism", correct: false },
+                    { text: "Încapsulare", correct: true },
+                    { text: "Abstracție", correct: false },
+                    { text: "Moștenire", correct: false }
+                ]
+            },
+            {
+                question: "Ce operator se folosește în JavaScript pentru a compara valoarea și tipul două variabile?",
+                answers: [
+                    { text: "==", correct: false },
+                    { text: "===", correct: true },
+                    { text: "!=", correct: false },
+                    { text: "!==", correct: false }
+                ]
+            },
+            {
+                question: "În C++, cum declari o constantă?",
+                answers: [
+                    { text: "define", correct: false },
+                    { text: "const", correct: true },
+                    { text: "let", correct: false },
+                    { text: "constant", correct: false }
+                ]
+            },{
+                question: "Ce limbaj de programare este cunoscut pentru folosirea în dezvoltarea aplicațiilor Android?",
+                answers: [
+                    { text: "Swift", correct: false },
+                    { text: "Kotlin", correct: true },
+                    { text: "JavaScript", correct: false },
+                    { text: "C#", correct: false }
+                ]
+            },
+            {
+                question: "Cum se numește funcția de bază pentru afișarea datelor în console în C#?",
+                answers: [
+                    { text: "print()", correct: false },
+                    { text: "echo()", correct: false },
+                    { text: "Console.WriteLine()", correct: true },
+                    { text: "System.out.print()", correct: false }
+                ]
+            },
+            {
+                question: "Care atribut HTML specifică adresa URL pentru un tag <a>?",
+                answers: [
+                    { text: "href", correct: true },
+                    { text: "src", correct: false },
+                    { text: "link", correct: false },
+                    { text: "ref", correct: false }
+                ]
+            },
+            {
+                question: "În HTML, cum definești un paragraf?",
+                answers: [
+                    { text: "<div>", correct: false },
+                    { text: "<paragraph>", correct: false },
+                    { text: "<p>", correct: true },
+                    { text: "<text>", correct: false }
+                ]
+            },
+            {
+                question: "Ce limbaj de programare folosește 'fun' pentru a defini o funcție?",
+                answers: [
+                    { text: "Java", correct: false },
+                    { text: "Kotlin", correct: true },
+                    { text: "Python", correct: false },
+                    { text: "JavaScript", correct: false }
+                ]
+            },
+            {
+                question: "Care dintre următoarele opțiuni este un tip de buclă în JavaScript?",
+                answers: [
+                    { text: "select", correct: false },
+                    { text: "repeat", correct: false },
+                    { text: "for", correct: true },
+                    { text: "choice", correct: false }
+                ]
+            },
+            {
+                question: "Cum declari o variabilă în Swift?",
+                answers: [
+                    { text: "var", correct: true },
+                    { text: "variable", correct: false },
+                    { text: "let", correct: false },
+                    { text: "int", correct: false }
+                ]
+            },
+            {
+                question: "Care este operatorul de egalitate strictă în Python?",
+                answers: [
+                    { text: "=", correct: false },
+                    { text: "==", correct: true },
+                    { text: "===", correct: false },
+                    { text: "equals", correct: false }
+                ]
+            },
+            {
+                question: "Ce structură de date în Python este ordonată și modificabilă?",
+                answers: [
+                    { text: "tuple", correct: false },
+                    { text: "list", correct: true },
+                    { text: "set", correct: false },
+                    { text: "dictionary", correct: false }
+                ]
+            },
+            {
+                question: "În care limbaj de programare este folosită sintaxa 'use strict' la începutul fișierelor pentru a impune o scriere mai strictă a codului?",
+                answers: [
+                    { text: "C++", correct: false },
+                    { text: "JavaScript", correct: true },
+                    { text: "Python", correct: false },
+                    { text: "Java", correct: false }
+                ]
+            },{
+                question: "Care funcție în PHP este folosită pentru a include un fișier?",
+                answers: [
+                    { text: "include_file()", correct: false },
+                    { text: "require()", correct: true },
+                    { text: "get_file()", correct: false },
+                    { text: "load()", correct: false }
+                ]
+            },
+            {
+                question: "Ce tip de loop există în Python care permite executarea unui set de instrucțiuni atâta timp cât o condiție este adevărată?",
+                answers: [
+                    { text: "for", correct: false },
+                    { text: "repeat", correct: false },
+                    { text: "while", correct: true },
+                    { text: "do-while", correct: false }
+                ]
+            },
+            {
+                question: "În Ruby, cum se creează un nou array?",
+                answers: [
+                    { text: "Array.new", correct: true },
+                    { text: "new Array[]", correct: false },
+                    { text: "array{}", correct: false },
+                    { text: "new array()", correct: false }
+                ]
+            },
+            {
+                question: "Cum se declara o variabilă constantă în JavaScript?",
+                answers: [
+                    { text: "let", correct: false },
+                    { text: "var", correct: false },
+                    { text: "const", correct: true },
+                    { text: "constant", correct: false }
+                ]
+            },
+            {
+                question: "Care este cuvântul cheie folosit pentru a crea o clasă în Java?",
+                answers: [
+                    { text: "class", correct: true },
+                    { text: "Class", correct: false },
+                    { text: "JavaClass", correct: false },
+                    { text: "newClass", correct: false }
+                ]
+            },
+            {
+                question: "Cum adaugi un comentariu pe o singură linie în C++?",
+                answers: [
+                    { text: "// comentariu", correct: true },
+                    { text: "# comentariu", correct: false },
+                    { text: "/* comentariu */", correct: false },
+                    { text: "<--comentariu-->", correct: false }
+                ]
+            },
+            {
+                question: "Care funcție în HTML este folosită pentru a crea un hyperlink?",
+                answers: [
+                    { text: "<link>", correct: false },
+                    { text: "<a>", correct: true },
+                    { text: "<href>", correct: false },
+                    { text: "<hyperlink>", correct: false }
+                ]
+            },
+            {
+                question: "Ce operator în SQL este utilizat pentru a selecta valori unice dintr-o coloană?",
+                answers: [
+                    { text: "UNIQUE", correct: false },
+                    { text: "SELECT DISTINCT", correct: true },
+                    { text: "GET UNIQUE", correct: false },
+                    { text: "DIFFERENT", correct: false }
+                ]
+            },
+            {
+                question: "În CSS, cum faci un element să dispară fără a-i elibera spațiul ocupat pe pagină?",
+                answers: [
+                    { text: "display: none", correct: false },
+                    { text: "visibility: hidden", correct: true },
+                    { text: "opacity: 0", correct: false },
+                    { text: "remove()", correct: false }
+                ]
+            },
+            {
+                question: "Cum inițializezi o variabilă de tip int la 10 în Kotlin?",
+                answers: [
+                    { text: "int x = 10", correct: false },
+                    { text: "let x = 10", correct: false },
+                    { text: "var x: Int = 10", correct: true },
+                    { text: "x <- 10", correct: false }
+                ]
+            },
+            {
+                question: "Care tag HTML este folosit pentru a insera o imagine?",
+                answers: [
+                    { text: "<img>", correct: true },
+                    { text: "<image>", correct: false },
+                    { text: "<insertImg>", correct: false },
+                    { text: "<pic>", correct: false }
+                ]
+            },
+            {
+                question: "Ce metodă este folosită în jQuery pentru a ascunde un element?",
+                answers: [
+                    { text: "hide()", correct: true },
+                    { text: "invisible()", correct: false },
+                    { text: "vanish()", correct: false },
+                    { text: "remove()", correct: false }
+                ]
+            },
+            {
+                question: "Care cuvânt cheie este folosit pentru a gestiona excepțiile în Java?",
+                answers: [
+                    { text: "handle", correct: false },
+                    { text: "error", correct: false },
+                    { text: "catch", correct: true },
+                    { text: "exception", correct: false }
+                ]
+            },
+            {
+                question: "Care proprietate CSS setează dimensiunea textului?",
+                answers: [
+                    { text: "text-style", correct: false },
+                    { text: "text-size", correct: false },
+                    { text: "font-size", correct: true },
+                    { text: "size", correct: false }
+                ]
+            },
+            {
+                question: "Ce este o variabilă de mediu în dezvoltarea software?",
+                answers: [
+                    { text: "Un set de constante aplicabile global", correct: false },
+                    { text: "O variabilă care poate fi accesată de orice parte a sistemului", correct: true },
+                    { text: "O variabilă care stochează locația utilizatorilor", correct: false },
+                    { text: "O setare internă a IDE-ului", correct: false }
+                ]
+            },
+
+        ];
+
+        startButton.addEventListener('click', startQuiz);
+  
+		restartButton.addEventListener('click', () => {
+            window.location.href = './quiz.html'; 
+        });
+
+		mainButton.addEventListener('click', () => {
+            window.location.href = "../index.html"; 
+        });
+
+        function startQuiz() {
+            score = 0;
+            timeLeft = 80; // time for each question 
+            startScreen.classList.add('hidden');
+            resultScreen.classList.add('hidden');
+            quizContainer.classList.remove('hidden');
+            panel.style.display = 'block';
+            shuffledQuestions = questions.sort(() => Math.random() - 0.5).slice(0, 10); //  10 random questions
+            currentQuestionIndex = 0;
+            setNextQuestion();
+            startTimer();
+        }
+
+        function setNextQuestion() {
+            resetState();
+            showQuestion(shuffledQuestions[currentQuestionIndex]);
+        }
+
+        function showQuestion(question) {
+            questionContainer.innerText = question.question;
+            question.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.innerText = answer.text;
+                button.classList.add('btn');
+                if (answer.correct) {
+                    button.dataset.correct = answer.correct;
+                }
+                button.addEventListener('click', selectAnswer);
+                answerButtons.appendChild(button);
+            });
+        }
+
+        function resetState() {
+            clearStatusClass(document.body);
+            while (answerButtons.firstChild) {
+                answerButtons.removeChild(answerButtons.firstChild);
+            }
+        }
+
+        function selectAnswer(e) {
+            const selectedButton = e.target;
+            const correct = selectedButton.dataset.correct;
+            if (correct) {
+                score++;
+            }
+            setStatusClass(document.body, correct);
+            Array.from(answerButtons.children).forEach(button => {
+                setStatusClass(button, button.dataset.correct);
+            });
+            clearInterval(timerInterval);
+            if (shuffledQuestions.length > currentQuestionIndex + 1) {
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    setNextQuestion();
+                    startTimer();
+                }, 1000);
+            } else {
+                setTimeout(showResult, 1000);
+            }
+        }
+
+        function setStatusClass(element, correct) {
+            clearStatusClass(element);
+            if (correct) {
+                element.classList.add('correct');
+            } else {
+                element.classList.add('wrong');
+            }
+        }
+
+        function clearStatusClass(element) {
+            element.classList.remove('correct');
+            element.classList.remove('wrong');
+        }
+
+		function startTimer() {
+    timerElement.innerText = timeLeft;
+    timerInterval = setInterval(() => {
+        timeLeft--;
+        timerElement.innerText = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            if (shuffledQuestions.length > currentQuestionIndex + 1) {
+                currentQuestionIndex++;
+                setNextQuestion();
+            } else {
+                showResult();
+            }
+        }
+    }, 1000);
+}
+function setNextQuestion() {
+    resetState();
+    timeLeft = 10; // reset the timer for each question
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
+}
 
 
-<div class="panel" id="panel">
-	
-	<div class="left-side" id="left">
-		<ul>
-			<li onclick="quizt(1)">LET'S DO IT</li>
-	
-			<li onclick="quizt(4)">Concepte Esențiale</li>
-			<li onclick="quizt(5)">C/C++</li>
-			<li onclick="quizt(6)">Java</li>
-			<li onclick="quizt(7)">Python</li>
-			<li onclick="quizt(8)">JavaScript</li>
-			<li onclick="quizt(9)">Structuri de Date</li>
-			<li onclick="quizt(10)">Algoritmi</li>
-			<li onclick="quizt(11)">Intrebari despre Tine</li>
-		</ul>
-	</div>
+        function showResult() {
+            quizContainer.style.display = 'none';
+            resultScreen.style.display = 'block';
+            scoreElement.innerText = score;
+        }
 
-	<div class="right-side" id="right">
-		<div id="quiz-container">
-			
-			<div id="f1"><div class="quiz-frame main-frame"></div></div>
-
-			<div id="f2"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSe3hXLPuiQGqj1n3IeeAzM8YLNpgJIIk_zfteoEdWka4X3wxQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
-			
-			<div id="f3"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSeVTLsd_AqZGpbIMnZRm20OKrjjiYSirWBjfCHpWtAsMQU--g/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
-			
-			<div id="f4"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSdjSKZhQp5jqqR34zD_uWMtgXr18F9pdK6YqcafLSP6J7VZjw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
-
-			<div id="f5"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSe1xs1-41MAbLN7KkXrJwtGdbl5ydxe_vX_nmFRjf6c0wtYkA/viewform?embedded=true"  frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></iframe></div>
-			
-			<div id="f6"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSdHFDm_BakVxro_zJI78OF2OLJpXgDzzaAVMHD9hptWlXBSpA/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
-			
-			<div id="f7"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSdgD7yFEJtqpkImDiLAaQ7w9VcsO688gr1V3Gl7FqwM5yXtWQ/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
-
-			<div id="f8"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSchDBnai_Aup7YFJQegg4z-qoB338p010VgZRxBYDT17xoRew/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
-
-			<div id="f9"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSfY5oIAz4R9Ty-LBpx7h4th6OJ0-RkrxIlLslRV4NjwwW8_uw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
-			
-			<div id="f10"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSflwS89sG7H98J9vFgFqJgsKaZ5gpq3yUlOiW3up7RQQ-qRnw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe></div>
-
-			<div id="f11"><iframe class="quiz-frame" src="https://docs.google.com/forms/d/e/1FAIpQLSe_aS8-CMNFdUzI1UE73zahC2bmMwJkmB6FJXPIeKbLIBqB4Q/viewform?embedded=true" frameborder="0" marginheiclass="quiz-frame" ght="0" marginwidth="0">Loading…</iframe></div>
-
-		</div>
-	</div>
-
-</div>
-
-	<script type="text/javascript" src="../script.js"></script>
+        restartButton.addEventListener('click', startQuiz);
+        mainButton.addEventListener('click', () => {
+            resultScreen.style.display = 'none';
+            startScreen.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
