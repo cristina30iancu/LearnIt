@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" type="image/png" href="../images/icon/fav.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezultatul Testului</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        .result-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .result-container h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .result-container h3 {
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .result-container label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="result-container">
+        <h1 id="quiz-title">Rezultatul Testului</h1>
+        <div id="questions-container">
+            <!-- Întrebările și răspunsurile vor fi afișate aici -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const scoreId = urlParams.get('scoreId');
+            if (scoreId) {
+                getTestResult(scoreId);
+            }
+        });
+
+        async function getTestResult(scoreId) {
+            const token = localStorage.getItem('userToken');
+            if (token) {
+                const response = await fetch(`http://localhost:3000/api/user-answers/${scoreId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    }
+                });
+
+                const score = await response.json();
+                if (response.ok) {
+                    document.getElementById('quiz-title').textContent = score.quizId.subject;
+
+                    const questionsContainer = document.getElementById('questions-container');
+                    score.questions.forEach((q, index) => {
+                        const isCorrect = q.givenAnswer === q.answer;
+                        const statusClass = isCorrect ? 'correct' : 'incorrect';
+                        const statusText = isCorrect ? 'Corect' : 'Greșit';
+
+                        const questionDiv = document.createElement('div');
+                        questionDiv.innerHTML = `<h3>${index + 1}. ${q.question}</h3>` +
+                            q.options.map(option => `<label><input type="radio" name="question${index}" value="${option}" disabled ${option === q.givenAnswer ? 'checked' : ''}> ${option}</label>`).join('') +
+                            `<p class="${statusClass}">${statusText}</p>`;
+                        questionsContainer.appendChild(questionDiv);
+                    });
+                } else {
+                    console.log(score.msg);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

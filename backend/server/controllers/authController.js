@@ -58,7 +58,7 @@ exports.getUserProfile = asyncHandler(async (req, res) => {
     if (user) {
         res.status(200).json({
             _id: user._id,
-            name: user.name,
+            name: user.fullName,
             email: user.email,
         });
     } else {

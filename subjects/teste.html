@@ -141,7 +141,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization':localStorage.getItem('userToken') // assuming you have a token for authentication
+                    'Authorization': localStorage.getItem('userToken') // assuming you have a token for authentication
                 },
                 body: JSON.stringify(payload)
             })
@@ -154,7 +154,36 @@
         }
 
         function navigateToCompletedTests() {
-            // Logica pentru navigarea la testele completate
+            fetch('http://localhost:3000/api/quiz/user-answers', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => displayCompletedTests(data))
+            .catch(error => console.error('Error fetching completed tests:', error));
+        }
+
+        function displayCompletedTests(scores) {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+
+            scores.forEach(score => {
+                const quizDiv = document.createElement('div');
+                quizDiv.innerHTML = `<h2>${score.quizId.subject}</h2>`;
+                score.questions.forEach((q, index) => {
+                    const isCorrect = q.givenAnswer === q.answer;
+                    const statusClass = isCorrect ? 'correct' : 'incorrect';
+                    const statusText = isCorrect ? 'Corect' : 'Greșit';
+
+                    const questionDiv = document.createElement('div');
+                    questionDiv.innerHTML = `<h3>${index + 1}. ${q.question}</h3>` +
+                        q.options.map(option => `<label><input type="radio" name="question${index}" value="${option}" disabled ${option === q.givenAnswer ? 'checked' : ''}> ${option}</label>`).join('') +
+                        `<p class="${statusClass}">${statusText}</p>`;
+                    quizDiv.appendChild(questionDiv);
+                });
+                container.appendChild(quizDiv);
+            });
         }
     </script>
 

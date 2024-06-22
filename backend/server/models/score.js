@@ -14,8 +14,22 @@ const scoreSchema = new mongoose.Schema({
   score: {
     type: Number,
     required: true
-  }
+  },
+  questions: [{
+    question: { type: String, required: true },
+    options: { 
+        type: [String],
+        required: true,
+        validate: [arrayLimit, 'Trebuie să existe cel puțin două opțiuni.']
+    },
+    answer: { type: String, required: true },
+    givenAnswer: { type: String, required: true }
+  }]
 });
+
+function arrayLimit(val) {
+  return val.length >= 2;
+}
 
 const Score = mongoose.model('Score', scoreSchema);
 

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" type="image/png" href="../images/icon/fav.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profilul Meu</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        .profile-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .profile-container h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .profile-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .profile-container li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-container li span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profile-container">
+        <h1 id="user-name">Profilul Meu</h1>
+        <ul id="score-list">
+            <!-- Scorurile vor fi afișate aici -->
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            getUserProfile();
+            getUserScores();
+        });
+
+        async function getUserProfile() {
+            const token = localStorage.getItem('userToken');
+            if (token) {
+                const response = await fetch('http://localhost:3000/api/profile', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    }
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    document.getElementById('user-name').textContent = "Bună, " + data.name + ". Acestea sun testele tale.";
+                } else {
+                    console.log(data.msg);
+                }
+            }
+        }
+
+        async function getUserScores() {
+        const token = localStorage.getItem('userToken');
+        if (token) {
+            const response = await fetch('http://localhost:3000/api/user-answers', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': token
+                }
+            });
+
+            const scores = await response.json();
+            if (response.ok) {
+                const scoreList = document.getElementById('score-list');
+                scores.forEach(score => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<span>${score.quizId.subject}</span> - Scor: ${score.score}`;
+                    listItem.onclick = () => {
+                            window.location.href = `result.html?scoreId=${score._id}`;
+                        };
+                    scoreList.appendChild(listItem);
+                });
+            } else {
+                console.log(scores.msg);
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>

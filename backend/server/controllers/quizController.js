@@ -121,3 +121,59 @@ exports.saveQuizScore = asyncHandler(async (req, res) => {
   const savedScore = await newScore.save();
   res.status(201).json(savedScore);
 });
+exports.getSingleUserAnswer = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const scoreId = req.params.id;
+
+  const score = await Score.findOne({ _id: scoreId, userId }).populate('quizId');
+  if (!score) {
+      res.status(404);
+      throw new Error('Scorul nu a fost găsit');
+  }
+
+  res.status(200).json(score);
+});
+
+exports.submitQuiz = asyncHandler(async (req, res) => {
+  const { quizId, answers } = req.body;
+  const userId = req.user._id;
+
+  const quiz = await Quiz.findById(quizId);
+  if (!quiz) {
+      return res.status(404).json({ msg: 'Quiz nu a fost găsit' });
+  }
+
+  let score = 0;
+  const detailedQuestions = [];
+
+  answers.forEach(answer => {
+      const question = quiz.questions[answer.questionIndex];
+      if (question) {
+          const isCorrect = question.answer === answer.answer;
+          if (isCorrect) {
+              score++;
+          }
+          detailedQuestions.push({
+              question: question.question,
+              options: question.options,
+              answer: question.answer,
+              givenAnswer: answer.answer
+          });
+      }
+  });
+
+  const newScore = await Score.create({
+      userId,
+      quizId,
+      score,
+      questions: detailedQuestions
+  });
+
+  res.status(200).json({ score: newScore.score });
+});
+
+exports.getAnswersOfUser = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+  const scores = await Score.find({ userId }).populate('quizId');
+  res.status(200).json(scores);
+});

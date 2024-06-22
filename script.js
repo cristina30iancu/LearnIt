@@ -104,16 +104,41 @@ function sideMenu(side) {
   side++;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+
+
+  document.getElementById("get-started").setAttribute("href", "login.html")
+  const token = localStorage.getItem('userToken');
+  if (token) {
+    const response =
+      fetch('http://localhost:3000/api/profile', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      }).then(res => res.json())
+        .then(data => document.getElementById("get-started").setAttribute("href", "profile.html"))
+  }
+  const logoutBtn = document.getElementById("logout")
+  if (localStorage.getItem('userToken')) {
+    logoutBtn.style.visibility = "visible";
+    logoutBtn.onclick = () => {
+      localStorage.removeItem("userToken");
+      window.location.href = "login.html"
+    }
+  } else {
+    logoutBtn.style.visibility = "hidden";
+  }
 
   function scrollAppear() {
     var introText = document.querySelector('.side-text');
     var sideImage = document.querySelector('.sideImage');
     var introPosition = introText.getBoundingClientRect().top;
     var imagePosition = sideImage.getBoundingClientRect().top;
-  
+
     var screenPosition = window.innerHeight / 1.2;
-  
+
     if (introPosition < screenPosition) {
       introText.classList.add('side-text-appear');
     }
@@ -121,9 +146,9 @@ document.addEventListener("DOMContentLoaded", function() {
       sideImage.classList.add('sideImage-appear');
     }
   }
-  
+
   window.addEventListener('scroll', scrollAppear);
-  
+
   // For switching between navigation menus in mobile mode
   var i = 2;
   function switchTAB() {
@@ -146,8 +171,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  
-  
+
+
   // Apelarea funcției pentru a încărca un quiz, de exemplu:
   /*fetchQuiz('C++');
   function loadQuiz(subject) {
@@ -169,18 +194,18 @@ document.addEventListener("DOMContentLoaded", function() {
   }
   */
 
-  async function getUser(){
+  async function getUser() {
     const token = localStorage.getItem('userToken');
-    if(token){
+    if (token) {
       const response = await
-      fetch('http://localhost:3000/api/profile', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': token
-        }
-      })
-  
+        fetch('http://localhost:3000/api/profile', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+          }
+        })
+
       const data = await response.json()
       if (response.ok) {
         console.log('Success:', data);
