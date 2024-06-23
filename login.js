@@ -245,7 +245,7 @@ function fetchQuiz(subject) {
       const password = document.getElementById('password');
       const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
       password.setAttribute('type', type);
-      this.innerHTML = type === 'password' ? '&#x1F441;' : '&#x1F441;';
+      // this.innerHTML = type === 'password' ? '&#x1F441;' : '&#x1F441;';
     });
 
    

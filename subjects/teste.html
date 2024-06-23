@@ -158,14 +158,7 @@
         }
 
         function navigateToCompletedTests() {
-            fetch('http://localhost:3000/api/user-answers', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('userToken')}`
-                }
-            })
-                .then(response => response.json())
-                .then(data => displayCompletedTests(data))
-                .catch(error => console.error('Error fetching completed tests:', error));
+            window.location.href = "/profile.html"
         }
 
         function displayCompletedTests(scores) {
