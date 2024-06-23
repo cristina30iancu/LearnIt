@@ -23,10 +23,11 @@ const User = require('./models/userModel');
 const Quiz = require('./models/quizz');
 const Score = require('./models/score');
 const Feedback = require('./models/feedback');
+const Task = require('./models/taskModel');
 
 AdminJS.registerAdapter(AdminJSMongoose);
 const adminOptions = {
-    resources: [User, Quiz, Score, Feedback],
+    resources: [User, Quiz, Score, Feedback, Task],
     dashboard: {
         component: AdminJS.bundle('./dashboard-component'),
     },
@@ -80,3 +81,5 @@ const authRoutes = require('./ruteAuth');  // Comentează sau decomentează în 
 app.use('/api', authRoutes);
 const feedbackRouter = require('./ruteFeedback');
 app.use('/api', feedbackRouter);
+const taskRoutes = require('./ruteTask');
+app.use('/api', taskRoutes);

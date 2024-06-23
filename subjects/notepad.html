@@ -10,7 +10,6 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
             background-image: url('../images/extra/notep_imag.jpg'); 
-            
             display: flex;
             justify-content: center;
             align-items: center;
@@ -76,13 +75,11 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="main-container">
-            <div class="todo-container">
-                <h1>Adaugă sarcini <span id="current-date"></span></h1> <!-- Element pentru afișarea datei curente -->
-                <input type="text" id="new-task" placeholder="Adaugă o nouă sarcină...">
-                <button onclick="addTask()">Adaugă Sarcină</button>
-              
-            </div>
+        <div class="todo-container">
+            <h1>Adaugă sarcini <span id="current-date"></span></h1> <!-- Element pentru afișarea datei curente -->
+            <input type="text" id="new-task" placeholder="Adaugă o nouă sarcină...">
+            <button onclick="addTask()">Adaugă Sarcină</button>
+        </div>
         <div class="completed-tasks-container">
             <h1>Sarcini de completat</h1>
             <ul id="task-list"></ul>
@@ -93,8 +90,10 @@
         </div>
     </div>
     <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            updateCurrentDate(); // Afișează data curentă
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCurrentDate();
+            loadTasks();
+
             var input = document.getElementById('new-task');
             input.addEventListener('keyup', function(event) {
                 if (event.key === "Enter") {
@@ -108,35 +107,92 @@
             var now = new Date();
             currentDateElement.textContent = ' - ' + now.toLocaleDateString('ro-RO');
         }
-        function addTask() {
-            var taskInput = document.getElementById('new-task');
-            var taskList = document.getElementById('task-list');
-            var taskText = taskInput.value.trim();
+
+        async function loadTasks() {
+            try {
+                const token = localStorage.getItem('userToken');
+                const response = await fetch('http://localhost:3000/api/tasks', {
+                    headers: {
+                        'Authorization': token
+                    }
+                });
+                const tasks = await response.json();
+
+                const taskList = document.getElementById('task-list');
+                const completedTaskList = document.getElementById('completed-task-list');
+
+                taskList.innerHTML = '';
+                completedTaskList.innerHTML = '';
+
+                tasks.forEach(task => {
+                    const newListElement = createTaskElement(task);
+                    if (task.isCompleted) {
+                        completedTaskList.appendChild(newListElement);
+                    } else {
+                        taskList.appendChild(newListElement);
+                    }
+                });
+            } catch (error) {
+                console.error('Error loading tasks:', error);
+            }
+        }
+
+        async function addTask() {
+            const taskInput = document.getElementById('new-task');
+            const taskText = taskInput.value.trim();
+
             if (taskText !== '') {
-                var newListElement = document.createElement('li');
-                var currentDate = new Date();
-                var timeString = currentDate.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
-                
-                newListElement.textContent = `${taskText} `;
-                var dateSpan = document.createElement('span');
-                dateSpan.textContent = `(Ora: ${timeString})`;
-                dateSpan.className = 'date-text';
-                newListElement.appendChild(dateSpan);
-                
-                newListElement.onclick = function() {
-                    this.classList.toggle('completed');
-                    setTimeout(() => moveTaskToCompleted(this), 5000); // Delay de 5 secunde
-                };
-                taskList.appendChild(newListElement);
+                const token = localStorage.getItem('userToken');
+                const response = await fetch('http://localhost:3000/api/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({ text: taskText })
+                });
+                const newTask = await response.json();
+                const newListElement = createTaskElement(newTask);
+
+                document.getElementById('task-list').appendChild(newListElement);
                 taskInput.value = '';
             } else {
                 alert("Te rog introdu o sarcină.");
             }
         }
 
-        function moveTaskToCompleted(taskElement) {
+        function createTaskElement(task) {
+            const newListElement = document.createElement('li');
+            const currentDate = new Date(task.createdAt);
+            const timeString = currentDate.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+
+            newListElement.textContent = `${task.text} `;
+            const dateSpan = document.createElement('span');
+            dateSpan.textContent = `(Ora: ${timeString})`;
+            dateSpan.className = 'date-text';
+            newListElement.appendChild(dateSpan);
+
+            newListElement.onclick = function() {
+                this.classList.toggle('completed');
+                setTimeout(() => updateTaskCompletion(this, task._id), 5000); // Delay de 5 secunde
+            };
+
+            return newListElement;
+        }
+
+        async function updateTaskCompletion(taskElement, taskId) {
             if (taskElement.classList.contains('completed')) {
-                var completedList = document.getElementById('completed-task-list');
+                const token = localStorage.getItem('userToken');
+                await fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({ isCompleted: true })
+                });
+
+                const completedList = document.getElementById('completed-task-list');
                 completedList.appendChild(taskElement.cloneNode(true));
                 taskElement.remove();
             }
