@@ -56,3 +56,5 @@ const quizRoutes = require('./rute');
 app.use('/api', quizRoutes);
 const authRoutes = require('./ruteAuth');  // Comentează sau decomentează în funcție de necesități
 app.use('/api', authRoutes);
+const feedbackRouter = require('./ruteFeedback');
+app.use('/api', feedbackRouter);

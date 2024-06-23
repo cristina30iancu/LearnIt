@@ -105,7 +105,65 @@ function sideMenu(side) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  const csubmit =   document.getElementById('csubmit');
+  if(csubmit)
+  document.getElementById('csubmit').addEventListener('click', submitFeedback);
 
+  function submitFeedback() {
+      const form = document.getElementById('feedbackForm');
+      const formData = new FormData(form);
+  
+      const data = {
+          name: formData.get('name'),
+          email: formData.get('email'),
+          details: formData.get('details')
+      };
+  
+      fetch('http://localhost:3000/api/feedback', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': localStorage.getItem('userToken')
+          },
+          body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+          console.log('Feedback saved:', data);
+          displayFeedback(data);
+      })
+      .catch(error => console.error('Error submitting feedback:', error));
+  }
+  
+  function displayFeedback(feedback) {
+    console.log('to show', feedback)
+      const feedbackList = document.getElementById('feedbackList');
+      const feedbackItem = document.createElement('div');
+      feedbackItem.className = 'feedback-item';
+      feedbackItem.innerHTML = `
+          <strong>${feedback.name}</strong><br>
+          ${feedback.email}<br>
+          ${feedback.details}
+      `;
+      feedbackList.appendChild(feedbackItem);
+  }
+  
+  
+  function loadFeedbacks() {
+    console.log('aci')
+      fetch('http://localhost:3000/api/feedback', {
+          headers: {
+              'Authorization': localStorage.getItem('userToken')
+          }
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+          data.forEach(feedback => displayFeedback(feedback));
+      })
+      .catch(error => console.error('Error loading feedbacks:', error));
+  }
+  loadFeedbacks()
 
   document.getElementById("get-started").setAttribute("href", "login.html")
   const token = localStorage.getItem('userToken');
